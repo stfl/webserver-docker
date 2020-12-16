@@ -57,3 +57,7 @@ RUN a2enmod rewrite headers
 
 # clean apt cache
 RUN rm -rf /var/lib/apt/lists/*
+
+# symlink apache logs to stdout
+RUN ln -sf /proc/self/fd/1 /var/log/apache2/access.log && \
+    ln -sf /proc/self/fd/1 /var/log/apache2/error.log
